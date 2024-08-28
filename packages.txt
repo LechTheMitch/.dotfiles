@@ -1,0 +1,81 @@
+git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
+
+paru -S --needed flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-contro0l fzfcryfs encfs gocryptfs davinci-resolve
+sudo pacman -S $(pacman -Ssq noto-fonts)
+
+chsh #To Change Shell
+#Zsh Path= /usr/bin/zsh
+
+flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio md.obsidian.Obsidian it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles com.heroicgameslauncher.hgl org.kde.skanpage net.pcsx2.PCSX2 com.valvesoftware.Steam org.DolphinEmu.dolphin-emu org.freedesktop.Platform.VulkanLayer.MangoHud com.atlauncher.ATLauncher com.anydesk.Anydesk org.ppsspp.PPSSPP com.github.unrud.VideoDownloader org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup
+
+flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create
+flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
+flatpak override --user com.usebottles.bottles --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam
+flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
+
+systemctl enable libvirtd
+usermod -aG libvirt gamal
+systemctl enable nix-daemon.service
+usermod -aG nix-users gamal
+systemctl enable apparmor.service
+systemctl start vmware-networks-configuration.service
+systemctl enable vmware-networks.service
+systemctl enable vmware-usbarbitrator.service
+systemctl enable nvidia-persistenced
+systemctl enable bluetooth
+systemctl enable supergfxd
+systemctl enable cups.socket
+systemctl enable snapd.socket
+systemctl enable snapd.apparmor.service
+
+sbctl create-keys
+sbctl enroll-keys -m
+sbctl verify
+sbctl sign -s /boot/vmlinuz-linux-zen
+sbctl sign -s /boot/vmlinuz-linux-lts
+sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
+sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
+
+nix --extra-experimental-features "nix-command flakes" run home-manager/master -- init --switch --extra-experimental-features "nix-command flakes" --flake ~/.dotfiles/
+sudo ln -s /var/lib/snapd/snap /snap
+
+sudo nbfc config --set "Acer Predator PH315-54"
+sudo nbfc start
+
+sudo snap install motrix chromium thunderbird
+sudo snap install blender --classic
+
+XDG_SESSION_TYPE=x11 #For Discord
+STEAM_FORCE_DESKTOPUI_SCALING=1.5 #For Steam
+QT_SCALE_FACTOR=1.5 #For Zoom
+
+--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder --no-default-browser-check #For Chromium Based Browser
+
+nano /usr/share/icons/default/index.theme #for sddm cursor
+
+kernel parameters="quiet splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf nvidia_drm.modeset=1 nvidia_drm.fbdev=1"
+
+mkdir /etc/sddm.conf.d/
+nano /etc/sddm.conf.d/10-wayland.conf
+"[General]
+DisplayServer=wayland
+GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell
+
+[Wayland]
+CompositorCommand=kwin_wayland --drm --no-lockscreen --no-global-shortcuts --locale1"
+
+nano /etc/systemd/zram-generator.conf
+"[zram0]
+zram-size = ram / 2
+compression-algorithm = zstd"
+
+#Apadtifier Applet
+https://store.kde.org/p/2135796
+https://store.kde.org/p/2146553
+
+
+
+
+DO NOT RUN:
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
