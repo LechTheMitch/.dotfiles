@@ -146,7 +146,7 @@ in
     chargelimit-off="echo 0 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/health_mode";
     calibrate-on="echo 1 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
     calibrate-off="echo 0 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
-    flakeupdate="nix flake update --flake ~/.config/home-manager/";
+    flakeupdate="nix flake update --flake ~/.dotfiles/";
   };
    history = {
     size = 10000;
@@ -163,7 +163,7 @@ in
    kitty = {
      enable = true;
      package = (config.lib.nixGL.wrap pkgs.kitty);
-     font.name="Fira Code SemiBold";
+     font.name="Fira Code Demi Bold";
      settings = {
         #font_family = "Fira Code SemiBold";
         font_size = 16;
