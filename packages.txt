@@ -4,6 +4,7 @@ paru -S --needed flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect 
 
 chsh #To Change Shell
 #Zsh Path= /usr/bin/zsh
+chsh -s /usr/bin/zsh gamal
 
 flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles com.heroicgameslauncher.hgl org.kde.skanpage net.pcsx2.PCSX2 com.valvesoftware.Steam org.DolphinEmu.dolphin-emu org.freedesktop.Platform.VulkanLayer.MangoHud com.atlauncher.ATLauncher com.anydesk.Anydesk org.ppsspp.PPSSPP com.github.unrud.VideoDownloader org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup
 
@@ -11,6 +12,9 @@ flatpak override --user --filesystem=~/.local/share/applications:create --filesy
 flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
 flatpak override --user com.usebottles.bottles --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam
 flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
+flatpak override --user --env=STEAM_FORCE_DESKTOPUI_SCALING=1.5 com.valvesoftware.Steam
+flatpak override --user --env=XDG_SESSION_TYPE=x11 com.discordapp.Discord
+flatpak override --user --env=QT_SCALE_FACTOR=1.5 us.zoom.Zoom
 
 systemctl enable libvirtd
 usermod -aG libvirt gamal
@@ -26,6 +30,7 @@ systemctl enable supergfxd
 systemctl enable cups.socket
 systemctl enable snapd.socket
 systemctl enable snapd.apparmor.service
+systemctl enable nbfc_service
 
 sbctl create-keys
 sbctl enroll-keys -m
@@ -48,7 +53,14 @@ XDG_SESSION_TYPE=x11 #For Discord
 STEAM_FORCE_DESKTOPUI_SCALING=1.5 #For Steam
 QT_SCALE_FACTOR=1.5 #For Zoom
 
---ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder --no-default-browser-check #For Chromium Based Browser
+--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder --no-default-browser-check %U #For Chromium Based Browser
+
+#Gear Lever Stuff
+https://github.com/Alex313031/thorium/releases/download/*/Thorium_Browser_*_AVX2.AppImage
+
+https://github.com/balena-io/etcher/releases/download/*/balenaEtcher-*-x64.AppImage
+
+
 
 nano /usr/share/icons/default/index.theme #for sddm cursor
 

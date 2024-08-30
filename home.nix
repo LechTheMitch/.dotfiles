@@ -43,6 +43,7 @@ in
     };
   #nixpkgs. android_sdk.accept_license = true;
   home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
+  home.file.".config/paru/paru.conf".source = ./dotfiles/sysmlinked/paru.conf;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   fonts.fontconfig.enable = true;

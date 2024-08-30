@@ -1,0 +1,40 @@
+[1ceb1386-6fe3-4ba6-b64b-f26f23517746]
+Description=Thorium
+desktopfile=thorium_browser
+desktopfilerule=3
+title=New Tab - Thorium
+types=1
+wmclass=thorium thorium-browser
+wmclasscomplete=true
+wmclassmatch=1
+
+[4a93c6b1-6fb1-46de-9253-920356ea469a]
+Description=Krohnkite
+minsizerule=2
+types=1
+
+[General]
+count=4
+rules=1ceb1386-6fe3-4ba6-b64b-f26f23517746,f6a52ab7-20e0-47af-98b2-3c5e10cfc7c5,4a93c6b1-6fb1-46de-9253-920356ea469a,b0675554-9856-4a27-892a-ff9c55036f29
+
+[b0675554-9856-4a27-892a-ff9c55036f29]
+Description=DaVinci Resolve Main Window
+maximizehorizrule=3
+maximizevertrule=3
+noborderrule=2
+types=1
+wmclass=resolve
+wmclassmatch=1
+
+[d42619ab-fc00-44ae-95b3-6f4a54711b2f]
+noborderrule=3
+
+[f6a52ab7-20e0-47af-98b2-3c5e10cfc7c5]
+Description=Google Chrome
+desktopfile=com.google.Chrome
+desktopfilerule=3
+title=Settings - Privacy and security - Google Chrome
+types=1
+wmclass=\sgoogle-chrome
+wmclasscomplete=true
+wmclassmatch=1
