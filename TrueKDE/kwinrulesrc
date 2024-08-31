@@ -1,3 +1,14 @@
+[0a1d8db4-1d67-4762-8cb4-d34a1eb78221]
+Description=Window settings for Vmware
+clientmachine=localhost
+disableglobalshortcuts=true
+disableglobalshortcutsrule=2
+title=Windows 11 x64 - VMware Workstation
+types=1
+wmclass=vmware Vmware
+wmclasscomplete=true
+wmclassmatch=1
+
 [1ceb1386-6fe3-4ba6-b64b-f26f23517746]
 Description=Thorium
 desktopfile=thorium_browser
@@ -14,8 +25,8 @@ minsizerule=2
 types=1
 
 [General]
-count=4
-rules=1ceb1386-6fe3-4ba6-b64b-f26f23517746,f6a52ab7-20e0-47af-98b2-3c5e10cfc7c5,4a93c6b1-6fb1-46de-9253-920356ea469a,b0675554-9856-4a27-892a-ff9c55036f29
+count=5
+rules=0a1d8db4-1d67-4762-8cb4-d34a1eb78221,1ceb1386-6fe3-4ba6-b64b-f26f23517746,f6a52ab7-20e0-47af-98b2-3c5e10cfc7c5,4a93c6b1-6fb1-46de-9253-920356ea469a,b0675554-9856-4a27-892a-ff9c55036f29
 
 [b0675554-9856-4a27-892a-ff9c55036f29]
 Description=DaVinci Resolve Main Window

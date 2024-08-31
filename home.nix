@@ -43,7 +43,7 @@ in
     };
   #nixpkgs. android_sdk.accept_license = true;
   home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
-  home.file.".config/paru/paru.conf".source = ./dotfiles/sysmlinked/paru.conf;
+#   home.file.".config/paru/paru.conf".source = ./dotfiles/linkedDotfiles/paru.conf;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   fonts.fontconfig.enable = true;
@@ -164,7 +164,7 @@ in
    kitty = {
      enable = true;
      package = (config.lib.nixGL.wrap pkgs.kitty);
-     font.name="Fira Code Demi Bold";
+     font.name="Fira Code SemiBold";
      settings = {
         #font_family = "Fira Code SemiBold";
         font_size = 16;
