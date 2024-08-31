@@ -1,5 +1,4 @@
 nix --extra-experimental-features "nix-command flakes" run home-manager/master -- init --switch --extra-experimental-features "nix-command flakes" --flake ~/.dotfiles/
-sudo ln -s /var/lib/snapd/snap /snap
 
 sudo nbfc config --set "Acer Predator PH315-54"
 sudo nbfc start

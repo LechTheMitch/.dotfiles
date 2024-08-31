@@ -6,7 +6,7 @@ cd /tmp
 
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
-paru -S --needed flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio
+paru -S --needed flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio qt5-tools
 
 
 echo -e "\nInstalling Flatpaks\n"
@@ -21,6 +21,7 @@ flatpak override --user --env=XDG_SESSION_TYPE=x11 com.discordapp.Discord
 flatpak override --user --env=STEAM_FORCE_DESKTOPUI_SCALING=1.5 com.valvesoftware.Steam
 flatpak override --user --env=QT_SCALE_FACTOR=1.5 us.zoom.Zoom
 
+paru -R qt5-tools
 
 cp ~/.dotfiles/TrueKDE/kglobalshortcutsrc ~/.config/
 cp ~/.dotfiles/TrueKDE/kwinrulesrc ~/.config/
@@ -55,6 +56,10 @@ sudo sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
 
 echo -e "\nEnabling classic snap support"
 sudo ln -s /var/lib/snapd/snap /snap
+
+echo -e "\nInstalling Snaps"
+sudo snap install motrix chromium thunderbird
+sudo snap install blender --classic
 
 echo -e "setting wayland as SDDM default"
 sudo mkdir /etc/sddm.conf.d/
