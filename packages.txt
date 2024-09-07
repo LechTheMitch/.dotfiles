@@ -19,7 +19,7 @@ https://github.com/balena-io/etcher/releases/download/*/balenaEtcher-*-x64.AppIm
 
 
 
-kernel parameters="quiet splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
+kernel parameters="quiet splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf nvidia.NVreg_PreserveVideoMemoryAllocations=1"
 
 #Apadtifier Applet
 https://store.kde.org/p/2135796
