@@ -43,7 +43,7 @@ in
     };
   #nixpkgs. android_sdk.accept_license = true;
   home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
-#   home.file.".config/paru/paru.conf".source = ./dotfiles/linkedDotfiles/paru.conf;
+  home.file.".config/paru/paru.conf".source = ./linkedDotfiles/paru.conf;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   fonts.fontconfig.enable = true;
@@ -149,6 +149,9 @@ in
     calibrate-off="echo 0 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
     flakeupdate="nix flake update --flake ~/.dotfiles/";
   };
+   initExtra = ''
+    ${pkgs.fastfetch}/bin/fastfetch
+  '';
    history = {
     size = 10000;
     path = "${config.xdg.dataHome}/Clutter/.zsh/history";
