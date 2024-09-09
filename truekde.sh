@@ -10,7 +10,7 @@ paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth
 
 
 echo -e "\nInstalling Flatpaks\n"
-flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles com.heroicgameslauncher.hgl org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup
+flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup
 
 echo -e "\nSetting Important Flatpak overrides\n"
 flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create
@@ -58,7 +58,7 @@ echo -e "\nEnabling classic snap support"
 sudo ln -s /var/lib/snapd/snap /snap
 
 echo -e "\nInstalling Snaps"
-sudo snap install motrix chromium thunderbird
+sudo snap install motrix chromium thunderbird todoist
 sudo snap install blender --classic
 
 echo -e "setting wayland as SDDM default"
@@ -66,6 +66,10 @@ sudo mkdir /etc/sddm.conf.d/
 sudo cp ~/.dotfiles/TrueKDE/10-wayland.conf /etc/sddm.conf.d/
 sudo cp ~/.dotfiles/TrueKDE/kde_settings.conf /etc/sddm.conf.d/ #Setting breeze theme
 sudo cp ~/.dotfiles/TrueKDE/index.theme /usr/share/icons/default/ #Setting breeze cursor theme
+
+echo -e "\nEnabling Acer RGB and Fan Control\n"
+cd ~/.dotfiles/acer-rgb-linux/
+makepkg -si
 
 echo -e "making swap file"
 sudo cp ~/.dotfiles/TrueKDE/zram-generator.conf /etc/systemd/
