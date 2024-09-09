@@ -77,6 +77,9 @@ sudo cp ~/.dotfiles/TrueKDE/zram-generator.conf /etc/systemd/
 echo -e "enabling vfio"
 sudo cp ~/.dotfiles/TrueKDE/supergfxd.conf /etc/
 
+echo -e "configuring pacman"
+sudo cp ~/.dotfiles/TrueKDE/pacman.conf /etc/
+
 echo -e "\nChanging Sell to Zsh\n"
 sudo chsh -s /usr/bin/zsh gamal
 
