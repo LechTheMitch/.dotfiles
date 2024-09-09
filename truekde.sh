@@ -49,10 +49,7 @@ echo -e "\nEnabling Secure Boot\n"
 sudo sbctl create-keys
 sudo sbctl enroll-keys -m
 sudo sbctl verify
-sudo sbctl sign -s /boot/vmlinuz-linux-zen
-sudo sbctl sign -s /boot/vmlinuz-linux-lts
-sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
-sudo sbctl sign -s /boot/EFI/systemd/systemd-bootx64.efi
+sudo sbctl verify | sudo sed 's/✗ /sbctl sign -s /e'
 
 echo -e "\nEnabling classic snap support"
 sudo ln -s /var/lib/snapd/snap /snap
