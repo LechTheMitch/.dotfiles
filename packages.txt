@@ -1,10 +1,5 @@
 nix --extra-experimental-features "nix-command flakes" run home-manager/master -- init --switch --extra-experimental-features "nix-command flakes" --flake ~/.dotfiles/
 
-sudo nbfc config --set "Acer Predator PH315-54"
-sudo nbfc start
-
-sudo snap install motrix chromium thunderbird
-sudo snap install blender --classic
 
 XDG_SESSION_TYPE=x11 #For Forcing xwayland
 

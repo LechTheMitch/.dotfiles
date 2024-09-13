@@ -58,8 +58,8 @@ in
     zed-editor
     ruby
     go
-    android-tools
-    (config.lib.nixGL.wrap android-studio)
+#     android-tools
+#     (config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rider ["github-copilot"]))
@@ -343,6 +343,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "nano";
+    DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
   };
 
 

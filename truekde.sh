@@ -6,7 +6,7 @@ cd /tmp
 
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
-paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead
+paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut
 
 
 echo -e "\nInstalling Flatpaks\n"
@@ -56,7 +56,7 @@ sudo ln -s /var/lib/snapd/snap /snap
 
 echo -e "\nInstalling Snaps"
 sudo snap install motrix chromium thunderbird todoist
-sudo snap install blender --classic
+sudo snap install blender android-studio --classic
 
 echo -e "setting wayland as SDDM default"
 sudo mkdir /etc/sddm.conf.d/
@@ -65,6 +65,7 @@ sudo cp ~/.dotfiles/TrueKDE/kde_settings.conf /etc/sddm.conf.d/ #Setting breeze 
 sudo cp ~/.dotfiles/TrueKDE/index.theme /usr/share/icons/default/ #Setting breeze cursor theme
 
 echo -e "\nEnabling Acer RGB and Fan Control\n"
+sudo nbfc config --set "Acer Predator PH315-54"
 cd ~/.dotfiles/acer-rgb-linux/
 makepkg -si
 
@@ -77,7 +78,16 @@ sudo cp ~/.dotfiles/TrueKDE/supergfxd.conf /etc/
 echo -e "configuring pacman"
 sudo cp ~/.dotfiles/TrueKDE/pacman.conf /etc/
 
+echo -e "\nSetting up firewall\n"
+sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
+sudo firewall-cmd --reload
+
 echo -e "\nChanging Sell to Zsh\n"
 sudo chsh -s /usr/bin/zsh gamal
+
+echo -e "\nSetting Kernel Parameters\n"
+sudo cp ~/.dotfiles/TrueKDE/cmdline.conf /etc/dracut.conf.d/
+sudo dracut --regenerate-all
+
 
 exit
