@@ -16,6 +16,11 @@ https://github.com/balena-io/etcher/releases/download/*/balenaEtcher-*-x64.AppIm
 
 kernel parameters="quiet splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf nvidia-drm.modeset=1 nvidia.NVreg_PreserveVideoMemoryAllocations=1 intel_iommu=on i915.force_probe=!46a6 xe.force_probe=46a6"
 
+#Screen Name Krohnkite
+LG Electronics W1943
+
+
+
 #Apadtifier Applet
 https://store.kde.org/p/2135796
 https://store.kde.org/p/2146553

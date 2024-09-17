@@ -3,7 +3,10 @@
 echo -e "Welcome to true kde"
 
 cd /tmp
-
+APDATVER=2.8
+KROHNVER=0.9.7
+TEMPVIRTDESK=0.3.2
+VIRTONLYPRI=0.4.5
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
 paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut
@@ -23,6 +26,20 @@ flatpak override --user --env=QT_SCALE_FACTOR=1.5 us.zoom.Zoom
 cp ~/.dotfiles/TrueKDE/kglobalshortcutsrc ~/.config/
 cp ~/.dotfiles/TrueKDE/kwinrulesrc ~/.config/
 
+echo -e "\nInstalling Plasmoids, Kwin Scripts and Desktop Effects\n"
+wget https://github.com/exequtic/apdatifier/releases/download/$APDATVER/apdatifier_$APDATVER.plasmoid
+kpackagetool6 -t Plasma/Applet -i apdatifier_$APDATVER.plasmoid
+git clone https://github.com/dhruv8sh/plasma6-desktopindicator-gnome.git
+mkdir ~/.local/share/plasma/plasmoids/org.kde.plasma.ginti
+cp -r ./plasma6-desktopindicator-gnome/. ~/.local/share/plasma/plasmoids/org.kde.plasma.ginti
+wget https://github.com/anametologin/krohnkite/releases/download/$KROHNVER/krohnkite-$KROHNVER.kwinscript
+kpackagetool6 --type=KWin/Script -i krohnkite-$KROHNVER.kwinscript
+wget https://github.com/Ubiquitine/temporary-virtual-desktops/releases/download/v$TEMPVIRTDESK/temporary-virtual-desktops-$TEMPVIRTDESK.kwinscript
+kpackagetool6 --type=KWin/Script -i temporary-virtual-desktops-$TEMPVIRTDESK.kwinscript
+wget https://github.com/Ubiquitine/virtual-desktops-only-on-primary/releases/download/v$VIRTONLYPRI/virtual-desktops-only-on-primary-$VIRTONLYPRI.kwinscript
+kpackagetool6 --type=KWin/Script -i virtual-desktops-only-on-primary-$VIRTONLYPRI.kwinscript
+git clone https://github.com/micha4w/kde-alt-f4-desktop.git
+kpackagetool6 --type=KWin/Script -i kde-alt-f4-desktop
 
 echo -e "\nEnabling Services\n"
 sudo systemctl enable libvirtd
