@@ -73,8 +73,8 @@ sudo ln -s /var/lib/snapd/snap /snap
 
 echo -e "\nInstalling Snaps"
 sudo snap install motrix chromium thunderbird todoist
-sudo snap install blender android-studio --classic
-
+sudo snap install blender --classic
+sudo snap install android-studio --classic
 echo -e "setting wayland as SDDM default"
 sudo mkdir /etc/sddm.conf.d/
 sudo cp ~/.dotfiles/TrueKDE/10-wayland.conf /etc/sddm.conf.d/
