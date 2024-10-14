@@ -1,0 +1,1 @@
+rd.luks.name=bb5f3f84-03a4-4dc7-a263-66ac2471e1d0=root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf nvidia-drm.modeset=1 nvidia.NVreg_PreserveVideoMemoryAllocations=1

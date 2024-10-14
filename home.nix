@@ -154,7 +154,7 @@ in
   '';
    history = {
     size = 10000;
-    path = "${config.xdg.dataHome}/Clutter/.zsh/history";
+    #path = "${config.xdg.dataHome}/Clutter/.zsh/history";
       };
     oh-my-zsh = {
     enable = true;
@@ -194,6 +194,8 @@ in
 	enable = true;
 	package = pkgs.gitFull;
 	lfs.enable = true;
+        userName  = "LechTheMitch";
+        userEmail = "104312143+LechTheMitch@users.noreply.github.com";
   };
 
   # FastFetch Configuration

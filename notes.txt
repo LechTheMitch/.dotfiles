@@ -1,4 +1,4 @@
-nix --extra-experimental-features "nix-command flakes" run home-manager/master -- init --switch --extra-experimental-features "nix-command flakes" --flake ~/.dotfiles/
+nix --extra-experimental-features "nix-command flakes" run home-manager/master -- init --switch --extra-experimental-features "nix-command flakes" --flake ~/.config/home-manager/ --impure
 
 
 XDG_SESSION_TYPE=x11 #For Forcing xwayland
@@ -12,7 +12,8 @@ https://github.com/balena-io/etcher/releases/download/*/balenaEtcher-*-x64.AppIm
 
 
 
-
+auto luks unlock
+ sudo clevis luks bind -d /dev/nvme0n1p2 tpm2 '{"pcr_bank":"sha256"}' <<< "$PASSWORD"
 
 kernel parameters="quiet splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf nvidia-drm.modeset=1 nvidia.NVreg_PreserveVideoMemoryAllocations=1 intel_iommu=on i915.force_probe=!46a6 xe.force_probe=46a6"
 
