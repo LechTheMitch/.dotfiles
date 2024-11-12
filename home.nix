@@ -1,30 +1,24 @@
-{ config, inputs, pkgs, ... }:
+{ config, inputs, pkgs, nixgl, ... }:
+
 
 let
   #stable = import
    # (builtins.fetchTarball https://nixos.org/channels/nixos-24.05)
     # reuse the current configuration
     #{ config = config.nixpkgs.config; };
-  nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
-  nixVulkanIntel = inputs.nixGL.packages."${pkgs.system}".nixVulkanIntel;
-#   nixGLNvidiaBumblebee = inputs.nixGL.packages."${pkgs.system}".nixGLNvidiaBumblebee;
-  #nixGLwrap = pkg: if setup.isNixOS then pkg else config.lib.nixGL.wrap pkg;
+  nixGL.packages = nixgl.packages;
+  nixGL.defaultWrapper = "mesa";
+  nixGL.offloadWrapper = "nvidiaPrime";
+  nixGL.installScripts = [ "mesa" "nvidiaPrime" ];
+  nixGL.vulkan.enable = true;
+
 in
 {
-  imports = [
-    (builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
-      sha256 = "sha256:01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
-    })
-  ];
-
-
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "gamal";
   home.homeDirectory = "/home/gamal";
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -44,6 +38,8 @@ in
   #nixpkgs. android_sdk.accept_license = true;
   home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
   home.file.".config/paru/paru.conf".source = ./linkedDotfiles/paru.conf;
+  home.file.".var/app/com.google.Chrome/config/chrome-flags.conf".text = ''--ozone-platform-hint=auto
+--enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder'';
   # The home.packages option allows you to install Nix packages into your
   # environment.
   fonts.fontconfig.enable = true;
@@ -55,11 +51,11 @@ in
     (config.lib.nixGL.wrap github-desktop)
     (config.lib.nixGL.wrap codeblocks)
     (config.lib.nixGL.wrap netbeans)
-    zed-editor
+    (config.lib.nixGL.wrap zed-editor)
     ruby
     go
 #     android-tools
-#     (config.lib.nixGL.wrap android-studio)
+    #(config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rider ["github-copilot"]))
@@ -74,13 +70,10 @@ in
     vistafonts
     corefonts
     fira-code
-    nixGLIntel
-    nixVulkanIntel
-    #nixGLNvidiaBumblebee
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
     (config.lib.nixGL.wrap (brave.override{
-        commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder""--no-default-browser-check"];
-    }))
+         commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder""--no-default-browser-check"];
+     }))
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -95,7 +88,6 @@ in
     # '')
   ];
 
-  nixGL.prefix = "${nixGLIntel}/bin/nixGLIntel";
   #nixVulkan.prefix = "${nixVulkanIntel}/bin/nixVulkanIntel";
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -163,31 +155,31 @@ in
   };
    };
 
-  # Kitty Configuration
-   kitty = {
-     enable = true;
-     package = (config.lib.nixGL.wrap pkgs.kitty);
-     font.name="Fira Code SemiBold";
-     settings = {
-        #font_family = "Fira Code SemiBold";
-        font_size = 16;
-        bold_font  = "auto";
-        italic_font =  "auto";
-        bold_italic_font ="auto";
-        background_opacity = "0.5";
-        background_blur = 1;
-        confirm_os_window_close = 0;
-        scrollback_lines = 9001;
-        wheel_scroll_min_lines =1;
-        enable_audio_bell = false;
-        selection_foreground = "none";
-        selection_background = "none";
-        window_padding_width = 4;
-        term = "kitty";
-     };
-     theme ="1984 Dark";
+   # Kitty Configuration
+    kitty = {
+      enable = true;
+      package = (config.lib.nixGL.wrap pkgs.kitty);
+      font.name="Fira Code SemiBold";
+      settings = {
+         #font_family = "Fira Code SemiBold";
+         font_size = 16;
+         bold_font  = "auto";
+         italic_font =  "auto";
+         bold_italic_font ="auto";
+         background_opacity = "0.5";
+         background_blur = 1;
+         confirm_os_window_close = 0;
+         scrollback_lines = 9001;
+         wheel_scroll_min_lines =1;
+         enable_audio_bell = false;
+         selection_foreground = "none";
+         selection_background = "none";
+         window_padding_width = 4;
+         term = "kitty";
+      };
+      theme ="1984 Dark";
 
-};
+ };
 
   # Git Configuration
   git={

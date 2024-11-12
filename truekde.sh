@@ -4,12 +4,12 @@ echo -e "Welcome to true kde"
 
 cd /tmp
 APDATVER=2.8
-KROHNVER=0.9.7
+KROHNVER=0.9.8.3
 TEMPVIRTDESK=0.3.2
 VIRTONLYPRI=0.4.5
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
-paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools firefox-pwa-bin tpm2-tools libpwquality luksmeta nmap clevis
+paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools tpm2-tools libpwquality luksmeta nmap clevis
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 paru -Rdd jdk-openjdk java-runtime-common java-environment-common

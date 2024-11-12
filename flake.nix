@@ -4,24 +4,30 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-       nixGL = {
-      url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     };
 
 
-  outputs = { nixpkgs, nixGL, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixgl, home-manager, ... }@inputs:
 
 
 
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          nixgl.overlay
+        ];
+      };
+
       setup = {
           wsl = false;
           basicSetup = false;
@@ -42,6 +48,7 @@
         extraSpecialArgs = { 
           # Pass all inputs to every module. It's a bit excessive, but allows us to easily refer
           # to stuff like inputs.nixgl.
+          inherit nixgl;
           inherit inputs; 
           };
 
