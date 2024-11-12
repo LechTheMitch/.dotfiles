@@ -51,7 +51,6 @@ in
     (config.lib.nixGL.wrap codeblocks)
     (config.lib.nixGL.wrap netbeans)
     (config.lib.nixGL.wrap zed-editor)
-    #(config.lib.nixGL.wrap kitty)
     ruby
     go
 #     android-tools
@@ -306,6 +305,7 @@ in
   home.sessionVariables = {
     EDITOR = "nano";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
+    NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
   };
 
 
