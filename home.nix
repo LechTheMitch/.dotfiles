@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, nixgl, ... }:
+{ config, inputs, pkgs, pkgs-stable, nixgl, ... }:
 
 
 let
@@ -35,8 +35,6 @@ in
   #nixpkgs. android_sdk.accept_license = true;
   home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
   home.file.".config/paru/paru.conf".source = ./linkedDotfiles/paru.conf;
-  home.file.".var/app/com.google.Chrome/config/chrome-flags.conf".text = ''--ozone-platform-hint=auto
---enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder'';
   # The home.packages option allows you to install Nix packages into your
   # environment.
   fonts.fontconfig.enable = true;
@@ -70,9 +68,9 @@ in
     corefonts
     fira-code
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    (config.lib.nixGL.wrap (brave.override{
-         commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder""--no-default-browser-check"];
-     }))
+    (config.lib.nixGL.wrap (pkgs-stable.brave.override{
+           commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder""--no-default-browser-check"];
+       }))
 
   ];
 
@@ -92,7 +90,7 @@ in
   programs = {
 
     # Zsh Configuration
-    zsh ={
+    zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;

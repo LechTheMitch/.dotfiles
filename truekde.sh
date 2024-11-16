@@ -9,7 +9,7 @@ TEMPVIRTDESK=0.3.2
 VIRTONLYPRI=0.4.5
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
-paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools tpm2-tools libpwquality luksmeta nmap clevis
+paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock timeshift
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 paru -Rdd jdk-openjdk java-runtime-common java-environment-common
@@ -27,6 +27,8 @@ flatpak override --user --env=QT_SCALE_FACTOR=1.5 us.zoom.Zoom
 
 cp ~/.dotfiles/TrueKDE/kglobalshortcutsrc ~/.config/
 cp ~/.dotfiles/TrueKDE/kwinrulesrc ~/.config/
+mkdir -p ~/.var/app/com.google.Chrome/config/
+cp ~/.dotfiles/TrueKDE/chrome-flags.conf ~/.var/app/com.google.Chrome/config/
 
 echo -e "\nInstalling Plasmoids, Kwin Scripts and Desktop Effects\n"
 wget https://github.com/exequtic/apdatifier/releases/download/$APDATVER/apdatifier_$APDATVER.plasmoid
@@ -76,7 +78,7 @@ echo -e "\nEnabling classic snap support"
 sudo ln -s /var/lib/snapd/snap /snap
 
 echo -e "\nInstalling Snaps"
-sudo snap install motrix chromium thunderbird todoist
+sudo snap install motrix chromium thunderbird todoist gimp
 sudo snap install blender --classic
 sudo snap install android-studio --classic
 
