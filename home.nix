@@ -68,7 +68,7 @@ in
     corefonts
     fira-code
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    (config.lib.nixGL.wrap (pkgs-stable.brave.override{
+    (config.lib.nixGL.wrap (brave.override{
            commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder""--no-default-browser-check"];
        }))
 

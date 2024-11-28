@@ -3,19 +3,20 @@
 echo -e "Welcome to true kde"
 
 cd /tmp
-APDATVER=2.8
+APDATVER=2.9.0
 KROHNVER=0.9.8.3
 TEMPVIRTDESK=0.3.2
 VIRTONLYPRI=0.4.5
+KZONESVER=0.9
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
-paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular gimp packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock timeshift
+paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar p7zip unarchiver lzop lrzip arj firefox okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock timeshift
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 paru -Rdd jdk-openjdk java-runtime-common java-environment-common
 
 echo -e "\nInstalling Flatpaks\n"
-flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup
+flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian
 
 echo -e "\nSetting Important Flatpak overrides\n"
 flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create
@@ -38,6 +39,8 @@ mkdir ~/.local/share/plasma/plasmoids/org.kde.plasma.ginti
 cp -r ./plasma6-desktopindicator-gnome/. ~/.local/share/plasma/plasmoids/org.kde.plasma.ginti
 wget https://github.com/anametologin/krohnkite/releases/download/$KROHNVER/krohnkite-$KROHNVER.kwinscript
 kpackagetool6 --type=KWin/Script -i krohnkite-$KROHNVER.kwinscript
+wget https://github.com/gerritdevriese/kzones/releases/download/v$KZONESVER/kzones.kwinscript
+kpackagetool6 --type=KWin/Script -i kzones.kwinscript
 wget https://github.com/Ubiquitine/temporary-virtual-desktops/releases/download/v$TEMPVIRTDESK/temporary-virtual-desktops-$TEMPVIRTDESK.kwinscript
 kpackagetool6 --type=KWin/Script -i temporary-virtual-desktops-$TEMPVIRTDESK.kwinscript
 wget https://github.com/Ubiquitine/virtual-desktops-only-on-primary/releases/download/v$VIRTONLYPRI/virtual-desktops-only-on-primary-$VIRTONLYPRI.kwinscript
