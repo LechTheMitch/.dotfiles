@@ -298,6 +298,7 @@ in
   };
   };
 
+
   home.sessionVariables = {
     EDITOR = "nano";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
