@@ -82,7 +82,6 @@ sudo ln -s /var/lib/snapd/snap /snap
 
 echo -e "\nInstalling Snaps"
 sudo snap install chromium
-sudo snap install blender --classic
 
 echo -e "setting wayland as SDDM default"
 sudo mkdir /etc/sddm.conf.d/
