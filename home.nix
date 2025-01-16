@@ -39,9 +39,6 @@ in
   # environment.
   fonts.fontconfig.enable = true;
   home.packages = with pkgs;[
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
     pkgs.nixgl.nixGLIntel
     pkgs.nixgl.nixVulkanIntel
     (config.lib.nixGL.wrap vscode)
@@ -51,8 +48,7 @@ in
     (config.lib.nixGL.wrap zed-editor)
     ruby
     go
-    javaPackages.openjfx21
-#     android-tools
+    android-tools
     #(config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
@@ -69,7 +65,7 @@ in
     corefonts
     fira-code
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    (config.lib.nixGL.wrap brave)
+    #(config.lib.nixGL.wrap brave)
   ];
 
   home.file = {
@@ -124,7 +120,6 @@ in
       package = (config.lib.nixGL.wrap pkgs.kitty);
       font.name="Fira Code SemiBold";
       settings = {
-         #font_family = "Fira Code SemiBold";
          font_size = 14;
          bold_font  = "auto";
          italic_font =  "auto";
@@ -303,7 +298,6 @@ in
     EDITOR = "nano";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
     NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
-    JFX_PATH = "${pkgs.javaPackages.openjfx21}/lib";
   };
 
 
