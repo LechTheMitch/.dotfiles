@@ -85,6 +85,10 @@ sudo snap install chromium
 sudo snap install blender --classic
 sudo snap install android-studio --classic
 
+echo -e "\nSetting Chromium Snap Flags\n"
+touch ~/.chromium-browser.init
+echo 'CHROMIUM_FLAGS="--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder"' > ~/.chromium-browser.init
+
 echo -e "setting wayland as SDDM default"
 sudo mkdir /etc/sddm.conf.d/
 sudo cp ~/.dotfiles/TrueKDE/10-wayland.conf /etc/sddm.conf.d/

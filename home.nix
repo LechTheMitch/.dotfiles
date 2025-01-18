@@ -10,6 +10,7 @@ in
   # manage.
   home.username = "gamal";
   home.homeDirectory = "/home/gamal";
+  targets.genericLinux.enable = true;
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -64,8 +65,10 @@ in
     vistafonts
     corefonts
     fira-code
+    supergfxctl-plasmoid
+    supergfxctl
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    #(config.lib.nixGL.wrap brave)
+    (config.lib.nixGL.wrap brave)
   ];
 
   home.file = {
@@ -99,6 +102,7 @@ in
     calibrate-on="echo 1 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
     calibrate-off="echo 0 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
     flakeupdate="nix flake update --flake ~/.dotfiles/";
+    nixsudo="sudo --preserve-env=PATH env";
   };
    initExtra = ''
     ${pkgs.fastfetch}/bin/fastfetch
