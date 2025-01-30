@@ -12,10 +12,14 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     };
 
 
-  outputs = { nixpkgs,nixpkgs-unstable, nixgl, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, nixgl, home-manager, self, flake-utils, system-manager, ... }@inputs:
 
 
 
@@ -57,6 +61,11 @@
           inherit inputs; 
           };
         
+      };
+      systemConfigs.default = system-manager.lib.makeSystemConfig {
+      modules = [
+        ./modules
+        ];
       };
     };
   

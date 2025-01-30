@@ -49,11 +49,13 @@ in
     (config.lib.nixGL.wrap zed-editor)
     ruby
     go
+    php
     android-tools
     #(config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rider ["github-copilot"]))
+    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.pycharm-professional ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.clion ["github-copilot"]))
     git-credential-manager
@@ -66,9 +68,9 @@ in
     corefonts
     fira-code
     supergfxctl-plasmoid
-    supergfxctl
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    (config.lib.nixGL.wrap brave)
+    (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=x11""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
+""--no-default-browser-check"];}))
   ];
 
   home.file = {
