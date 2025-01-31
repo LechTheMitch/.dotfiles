@@ -51,6 +51,7 @@ in
     go
     php
     android-tools
+    qt6.full
     #(config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
@@ -69,7 +70,7 @@ in
     fira-code
     supergfxctl-plasmoid
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=x11""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
+    (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
 ""--no-default-browser-check"];}))
   ];
 
