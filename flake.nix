@@ -53,7 +53,7 @@
         extraSpecialArgs = { 
           # Pass all inputs to every module. It's a bit excessive, but allows us to easily refer
           # to stuff like inputs.nixgl.
-          pkgs-stable = import nixpkgs-unstable {
+          pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
           };

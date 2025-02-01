@@ -51,7 +51,8 @@ in
     go
     php
     android-tools
-    qt6.full
+    kdePackages.full
+    kdePackages.breeze
     #(config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
@@ -70,7 +71,7 @@ in
     fira-code
     supergfxctl-plasmoid
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
-    (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=wayland""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
+    (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=auto""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
 ""--no-default-browser-check"];}))
   ];
 
@@ -105,6 +106,7 @@ in
     calibrate-on="echo 1 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
     calibrate-off="echo 0 | sudo tee /sys/bus/wmi/drivers/acer-wmi-battery/calibration_mode";
     flakeupdate="nix flake update --flake ~/.dotfiles/";
+    google-chrome="flatpak run com.google.Chrome";
     nixsudo="sudo --preserve-env=PATH env";
   };
    initExtra = ''
@@ -305,6 +307,7 @@ in
     EDITOR = "nano";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
     NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
+    NIXOS_OZONE_WL = "1";
   };
 
 
