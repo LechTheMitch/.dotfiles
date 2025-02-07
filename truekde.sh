@@ -16,7 +16,7 @@ paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 paru -Rdd jdk-openjdk java-runtime-common java-environment-common
 
 echo -e "\nInstalling Flatpaks\n"
-flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian io.missioncenter.MissionCenter org.mozilla.Thunderbird org.gimp.GIMP
+flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian io.missioncenter.MissionCenter org.mozilla.Thunderbird org.gimp.GIMP org.kde.ktorrent
 
 echo -e "\nSetting Important Flatpak overrides\n"
 flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create

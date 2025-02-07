@@ -108,6 +108,7 @@ in
     flakeupdate="nix flake update --flake ~/.dotfiles/";
     google-chrome="flatpak run com.google.Chrome";
     nixsudo="sudo --preserve-env=PATH env";
+    homeupdate="home-manager switch --flake ~/.dotfiles/ --impure";
   };
    initExtra = ''
     ${pkgs.fastfetch}/bin/fastfetch
