@@ -8,6 +8,8 @@ KROHNVER=0.9.8.3
 TEMPVIRTDESK=0.3.2
 VIRTONLYPRI=0.4.5
 KZONESVER=0.9
+CHROMEFLAGS="--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder --no-default-browser-check"
+CHROMEFLAGS_DIR="~/.var/app/com.google.Chrome/config/"
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
 paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj firefox okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify splix preload sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif
@@ -87,7 +89,7 @@ sudo snap install android-studio --classic
 
 echo -e "\nSetting Chromium Snap Flags\n"
 touch ~/.chromium-browser.init
-echo 'CHROMIUM_FLAGS="--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder"' > ~/.chromium-browser.init
+echo "CHROMIUM_FLAGS=\"$CHROMEFLAGS\"" > ~/.chromium-browser.init
 
 echo -e "setting wayland as SDDM default"
 sudo mkdir /etc/sddm.conf.d/
