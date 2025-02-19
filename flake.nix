@@ -2,14 +2,14 @@
   description = "Home Manager configuration of gamal";
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixgl = {
-      url = "github:nix-community/nixGL";
+      url = "github:johanneshorner/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     system-manager = {
@@ -19,7 +19,7 @@
     };
 
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixgl, home-manager, self, flake-utils, system-manager, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-stable, nixgl, home-manager, self, flake-utils, system-manager, ... }@inputs:
 
 
 
@@ -53,7 +53,7 @@
         extraSpecialArgs = { 
           # Pass all inputs to every module. It's a bit excessive, but allows us to easily refer
           # to stuff like inputs.nixgl.
-          pkgs-unstable = import nixpkgs-unstable {
+          pkgs-stable = import nixpkgs-stable {
             inherit system;
             config.allowUnfree = true;
           };

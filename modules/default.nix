@@ -2,9 +2,9 @@
 
 {
   config = {
+    imports = [ ./supergfxd.nix ];
     nixpkgs.hostPlatform = "x86_64-linux";
     system-manager.allowAnyDistro = true;
-
 
     environment = {
       etc = {
@@ -13,16 +13,11 @@
         '';
       };
       systemPackages = with pkgs;[
-
+        supergfxctl
       ];
     };
-
-
-systemd.packages = [ pkgs.supergfxctl ];
+    services.supergfxd.enable = true;
     systemd.services = {
-      supergfxd = {
-        enable = true;
-      }
       foo = {
         enable = true;
         serviceConfig = {

@@ -51,7 +51,7 @@ in
     go
     php
     android-tools
-    kdePackages.full
+    #kdePackages.full
     kdePackages.breeze
     #(config.lib.nixGL.wrap android-studio)
     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
@@ -69,8 +69,8 @@ in
     vistafonts
     corefonts
     fira-code
-    supergfxctl-plasmoid
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode"]; })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
     (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=auto""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
 ""--no-default-browser-check"];}))
   ];
@@ -305,11 +305,26 @@ in
 
 
   home.sessionVariables = {
+    LIBVIRT_DEFAULT_URI="qemu:///system";
     EDITOR = "nano";
     DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
     NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
     NIXOS_OZONE_WL = "1";
   };
+
+#    systemd.user.services.bridgedNetworking = {
+#     Unit = {
+#       Description = "Bridged Networking for KVM machine using ipvtap.";
+#     };
+#     Install = {
+#       WantedBy = [ "graphical.target" ];
+#     };
+#     Service = {
+#       User = "root";
+#       ExecStart = "/home/gamal/.dotfiles/Scripts/bridgedNetworking.sh";
+#       Restart = "on-failure";
+#     };
+#   };
 
 
   # Let Home Manager install and manage itself.
