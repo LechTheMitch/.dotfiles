@@ -63,6 +63,7 @@ in
     git-credential-manager
     neovim
     nodejs
+    gns3-gui
     megasync
     emacs-gtk
     glxinfo

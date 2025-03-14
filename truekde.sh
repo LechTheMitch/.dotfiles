@@ -3,7 +3,7 @@
 echo -e "Welcome to true kde"
 
 cd /tmp
-APDATVER=2.9.0
+APDATVER=2.9.2
 KROHNVER=0.9.8.3
 TEMPVIRTDESK=0.3.2
 VIRTONLYPRI=0.4.5
@@ -12,13 +12,13 @@ CHROMEFLAGS="--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHist
 CHROMEFLAGS_DIR="~/.var/app/com.google.Chrome/config/"
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
 
-paru -S --needed --noconfirm flatpak flatpak-kcm xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj firefox okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin teamviewer kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif samsung-unified-driver
+paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif samsung-unified-driver scrcpy python-pyclip
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 paru -Rdd jdk-openjdk java-runtime-common java-environment-common
 
 echo -e "\nInstalling Flatpaks\n"
-flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian io.missioncenter.MissionCenter org.mozilla.Thunderbird org.gimp.GIMP org.kde.ktorrent
+flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian io.missioncenter.MissionCenter org.mozilla.Thunderbird org.gimp.GIMP org.kde.ktorrent app.zen_browser.zen
 
 echo -e "\nSetting Important Flatpak overrides\n"
 flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create
@@ -82,7 +82,7 @@ echo -e "\nEnabling classic snap support"
 sudo ln -s /var/lib/snapd/snap /snap
 
 echo -e "\nInstalling Snaps"
-sudo snap install chromium
+sudo snap install chromium snapd-desktop-integration
 sudo snap install blender --classic
 sudo snap install android-studio --classic
 
@@ -116,6 +116,7 @@ sudo cp ~/.dotfiles/TrueKDE/pacman.conf /etc/
 
 echo -e "\nSetting up firewall\n"
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
+sudo firewall-cmd --zone=trusted --add-interface=waydroid0
 sudo firewall-cmd --reload
 
 echo -e "\nSetting up Appimages\n"
