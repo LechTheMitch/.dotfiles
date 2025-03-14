@@ -64,6 +64,7 @@ in
     neovim
     nodejs
     gns3-gui
+    gns3-server
     megasync
     emacs-gtk
     glxinfo
