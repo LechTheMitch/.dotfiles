@@ -32,6 +32,7 @@
           nixgl.overlay
         ];
         };
+      nixpkgs = pkgs;
 
       setup = {
           wsl = false;
@@ -56,6 +57,9 @@
           pkgs-stable = import nixpkgs-stable {
             inherit system;
             config.allowUnfree = true;
+            overlays = [
+              nixgl.overlay
+            ];
           };
           inherit nixgl;
           inherit inputs; 

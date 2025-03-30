@@ -20,7 +20,7 @@ pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst
 pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 echo -e "\nInstalling System Packages\n"
-paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module kio-gdrive gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app davinci-resolve-studio opencl-nvidia jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif samsung-unified-driver scrcpy python-pyclip
+paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif samsung-unified-driver scrcpy python-pyclip btop
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 paru -Rdd jdk-openjdk java-runtime-common java-environment-common
@@ -124,7 +124,7 @@ sudo cp ~/.dotfiles/TrueKDE/pacman.conf /etc/
 
 echo -e "\nSetting up firewall\n"
 sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
-sudo firewall-cmd --zone=trusted --add-interface=waydroid0
+sudo firewall-cmd --permanent --zone=trusted --add-interface=waydroid0
 sudo firewall-cmd --reload
 
 echo -e "\nSetting up Appimages\n"
