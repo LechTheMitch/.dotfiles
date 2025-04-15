@@ -111,6 +111,9 @@ in
     google-chrome="flatpak run com.google.Chrome";
     nixsudo="sudo --preserve-env=PATH env";
     homeupdate="home-manager switch --flake ~/.dotfiles/ --impure";
+    hows-my-gpu="echo \"NVIDIA Dedicated Graphics\" | grep \"NVIDIA\" && lspci -nnk | grep \"VGA compatible controller.*NVIDIA\" -A 2 | grep \"Kernel driver in use\" && echo \"Intel Integrated Graphics\" | grep \"Intel\" && lspci -nnk | grep -m 1\"VGA compatible controller.*Intel\" -A 3 | grep \"Kernel driver in use\" && echo \"Enable and disable the dedicated NVIDIA GPU with nvidia-enable and nvidia-disable\"";
+    nvidia-enable="sudo virsh nodedev-reattach pci_0000_01_00_0 && echo \"GPU reattached (now host ready)\" && sudo rmmod vfio_pci vfio_pci_core vfio_iommu_type1 && echo \"VFIO drivers removed\" && sudo modprobe -i nvidia_drm nvidia_modeset nvidia_uvm nvidia && echo \"NVIDIA drivers added\" && echo \"COMPLETED!\"";
+    nvidia-disable="sudo rmmod nvidia_drm nvidia_modeset nvidia_uvm nvidia && echo \"NVIDIA drivers removed\" && sudo modprobe -i vfio_pci vfio_pci_core vfio_iommu_type1 && echo \"VFIO drivers added\" && sudo virsh nodedev-detach pci_0000_01_00_0 && echo \"GPU detached (now vfio ready)\" && echo \"COMPLETED!\"";
   };
    initExtra = ''
     ${pkgs.fastfetch}/bin/fastfetch

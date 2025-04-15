@@ -137,6 +137,7 @@ sudo chsh -s /usr/bin/zsh gamal
 echo -e "\nSetting Kernel Parameters\n"
 #sudo cp ~/.dotfiles/TrueKDE/cmdline.conf /etc/kernel/
 sudo cp ~/.dotfiles/TrueKDE/dracut-ukify.conf /etc/
+sudo cp ~/.dotfiles/TrueKDE/dracutmodules.conf /etc/dracut.conf.d/
 sudo dracut-ukify -a
 
 
