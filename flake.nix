@@ -32,7 +32,6 @@
           nixgl.overlay
         ];
         };
-      nixpkgs = pkgs;
 
       setup = {
           wsl = false;
