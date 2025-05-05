@@ -47,20 +47,22 @@ in
     (config.lib.nixGL.wrap codeblocks)
     (config.lib.nixGL.wrap netbeans)
     (config.lib.nixGL.wrap zed-editor)
-    ruby
-    go
-    php
     android-tools
-    #kdePackages.full
     kdePackages.breeze
     #(config.lib.nixGL.wrap android-studio)
-    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
-    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
-    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rider ["github-copilot"]))
-    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot"]))
-    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.pycharm-professional ["github-copilot"]))
-    (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.clion ["github-copilot"]))
-    git-credential-manager
+#     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"]))
+#     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rust-rover ["github-copilot"]))
+#     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.rider ["github-copilot"]))
+#     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.phpstorm ["github-copilot"]))
+#     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.pycharm-professional ["github-copilot"]))
+#     (config.lib.nixGL.wrap (jetbrains.plugins.addPlugins jetbrains.clion ["github-copilot"]))
+#Try again in 4 weeks
+    (config.lib.nixGL.wrap jetbrains.idea-ultimate)
+    (config.lib.nixGL.wrap jetbrains.rust-rover)
+    (config.lib.nixGL.wrap jetbrains.rider)
+    (config.lib.nixGL.wrap jetbrains.phpstorm)
+    (config.lib.nixGL.wrap jetbrains.pycharm-professional)
+    (config.lib.nixGL.wrap jetbrains.clion)
     neovim
     nodejs
     gns3-gui
@@ -111,11 +113,11 @@ in
     google-chrome="flatpak run com.google.Chrome";
     nixsudo="sudo --preserve-env=PATH env";
     homeupdate="home-manager switch --flake ~/.dotfiles/ --impure";
-    hows-my-gpu="echo \"NVIDIA Dedicated Graphics\" | grep \"NVIDIA\" && lspci -nnk | grep \"VGA compatible controller.*NVIDIA\" -A 2 | grep \"Kernel driver in use\" && echo \"Intel Integrated Graphics\" | grep \"Intel\" && lspci -nnk | grep -m 1\"VGA compatible controller.*Intel\" -A 3 | grep \"Kernel driver in use\" && echo \"Enable and disable the dedicated NVIDIA GPU with nvidia-enable and nvidia-disable\"";
-    nvidia-enable="sudo virsh nodedev-reattach pci_0000_01_00_0 && echo \"GPU reattached (now host ready)\" && sudo rmmod vfio_pci vfio_pci_core vfio_iommu_type1 && echo \"VFIO drivers removed\" && sudo modprobe -i nvidia_drm nvidia_modeset nvidia_uvm nvidia && echo \"NVIDIA drivers added\" && echo \"COMPLETED!\"";
+    hows-my-gpu="echo \"NVIDIA Dedicated Graphics\" | grep \"NVIDIA\" && lspci -nnk | grep \"VGA compatible controller.*NVIDIA\" -A 2 | grep \"Kernel driver in use\" && echo \"Intel Integrated Graphics\" | grep \"Intel\" && lspci -nnk | grep -m 1 \"VGA compatible controller.*Intel\" -A 3 | grep \"Kernel driver in use\" && echo \"Enable and disable the dedicated NVIDIA GPU with nvidia-enable and nvidia-disable\"";
+    nvidia-enable="sudo virsh nodedev-reattach pci_0000_01_00_0 && echo \"GPU reattached (now host ready)\" && sudo rmmod vfio_pci vfio_pci_core vfio_iommu_type1 && echo \"VFIO drivers removed\" && sudo modprobe -i -a nvidia_drm nvidia_modeset nvidia_uvm nvidia && echo \"NVIDIA drivers added\" && echo \"COMPLETED!\"";
     nvidia-disable="sudo rmmod nvidia_drm nvidia_modeset nvidia_uvm nvidia && echo \"NVIDIA drivers removed\" && sudo modprobe -i vfio_pci vfio_pci_core vfio_iommu_type1 && echo \"VFIO drivers added\" && sudo virsh nodedev-detach pci_0000_01_00_0 && echo \"GPU detached (now vfio ready)\" && echo \"COMPLETED!\"";
   };
-   initExtra = ''
+   initContent = ''
     ${pkgs.fastfetch}/bin/fastfetch
   '';
    history = {
@@ -315,7 +317,9 @@ in
     DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
     NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
     NIXOS_OZONE_WL = "1";
+    ZSH_PATH = "${pkgs.zsh}/bin/zsh";
   };
+
 
 #    systemd.user.services.bridgedNetworking = {
 #     Unit = {

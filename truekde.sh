@@ -8,6 +8,7 @@ KROHNVER=0.9.8.3
 TEMPVIRTDESK=0.3.2
 VIRTONLYPRI=0.4.5
 KZONESVER=0.9
+INVOKINGUSER=$(whoami)
 CHROMEFLAGS="--ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation,VaapiVideoDecoder,VaapiVideoEncoder --no-default-browser-check"
 CHROMEFLAGS_DIR="~/.var/app/com.google.Chrome/config/"
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si
@@ -20,13 +21,12 @@ pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst
 pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 echo -e "\nInstalling System Packages\n"
-paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage proton-vpn-gtk-app jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif samsung-unified-driver scrcpy python-pyclip btop
+paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif samsung-unified-driver scrcpy python-pyclip btop ntfs-3g
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
-paru -Rdd jdk-openjdk java-runtime-common java-environment-common
 
 echo -e "\nInstalling Flatpaks\n"
-flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian io.missioncenter.MissionCenter org.mozilla.Thunderbird org.gimp.GIMP org.kde.ktorrent app.zen_browser.zen
+flatpak install org.kde.kdenlive org.kde.krita org.libreoffice.LibreOffice com.discordapp.Discord com.google.Chrome com.obsproject.Studio it.mijorus.gearlever io.github.giantpinkrobots.flatsweep us.zoom.Zoom io.github._0xzer0x.qurancompanion com.usebottles.bottles org.kde.skanpage com.anydesk.Anydesk com.github.unrud.VideoDownloader org.inkscape.Inkscape org.gnome.Epiphany com.boxy_svg.BoxySVG org.gnome.World.PikaBackup md.obsidian.Obsidian io.missioncenter.MissionCenter org.mozilla.Thunderbird org.gimp.GIMP org.kde.ktorrent app.zen_browser.zen io.github.celluloid_player.Celluloid
 
 echo -e "\nSetting Important Flatpak overrides\n"
 flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create
@@ -67,7 +67,6 @@ sudo systemctl enable apparmor.service
 sudo systemctl start vmware-networks-configuration.service
 sudo systemctl enable vmware-networks.service
 sudo systemctl enable vmware-usbarbitrator.service
-sudo systemctl enable nvidia-persistenced
 sudo systemctl enable bluetooth
 sudo systemctl enable supergfxd
 sudo systemctl enable firewalld
@@ -116,8 +115,10 @@ makepkg -si
 echo -e "making swap file"
 sudo cp ~/.dotfiles/TrueKDE/zram-generator.conf /etc/systemd/
 
-echo -e "enabling vfio"
-sudo cp ~/.dotfiles/TrueKDE/supergfxd.conf /etc/
+echo -e "enabling vfio && looking-glass"
+sudo echo "# Type Path               Mode UID  GID Age Argument
+
+f /dev/shm/looking-glass 0660 $INVOKINGUSER kvm -" | sudo tee /etc/tmpfiles.d/10-looking-glass.conf
 
 echo -e "configuring pacman"
 sudo cp ~/.dotfiles/TrueKDE/pacman.conf /etc/
