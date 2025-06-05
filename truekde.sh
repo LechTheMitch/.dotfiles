@@ -21,7 +21,7 @@ pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst
 pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 echo -e "\nInstalling System Packages\n"
-paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif scrcpy python-pyclip btop ntfs-3g exfat-utils
+paru -S --needed --noconfirm flatpak flatpak-kcm falkon xdg-desktop-portal-gtk plymouth kdeconnect xwaylandvideobridge nix virt-manager unrar 7zip unarchiver lzop lrzip arj okular packagekit-qt6 snapd qemu-desktop ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra acer-wmi-battery-dkms vmware-workstation power-profiles-daemon supergfxctl plasma6-applets-supergfxctl looking-glass dnsmasq swtpm waydroid distrobox podman kio-admin sbctl spectacle cups system-config-printer fwupd pacutils pacman-contrib appmenu-gtk-module gwenview filelight sshfs nbfc-linux kcalc zsh xmlstarlet jq unzip local-by-flywheel-bin kdepim-addons vulkan-intel partitionmanager kdegraphics-thumbnailers ffmpegthumbs qt6-imageformats kimageformats switcheroo-control fzf cryfs encfs gocryptfs lsb-release klassy-bin kf6-servicemenus-reimage jhead firewalld dracut dracut-ukify sbsigntools tpm2-tools libpwquality luksmeta nmap clevis kclock libheif scrcpy python-pyclip btop ntfs-3g exfat-utils libdbusmenu-gtk3
 
 paru -Rsc --noconfirm linux qt5-tools mkinitcpio
 
@@ -32,7 +32,10 @@ echo -e "\nSetting Important Flatpak overrides\n"
 flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create
 flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
 flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications
+flatpak override app.zen_browser.zen --user --talk-name=org.kde.plasma.browser.integration
 flatpak override --user --env=XDG_SESSION_TYPE=x11 com.discordapp.Discord
+flatpak override --user --talk-name=com.canonical.AppMenu.Registrar app.zen_browser.zen com.google.Chrome
+flatpak override --user --unset-env=LIBVA_DRIVERS_PATH
 flatpak override --user --env=QT_SCALE_FACTOR=1.5 us.zoom.Zoom
 
 
