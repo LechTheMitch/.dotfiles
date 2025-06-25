@@ -75,8 +75,16 @@ in
     fira-code
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
-    (config.lib.nixGL.wrap (brave.override{commandLineArgs = ["--ozone-platform-hint=auto""--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
-""--no-default-browser-check"];}))
+    kdePackages.full
+    (config.lib.nixGL.wrap (
+    (pkgs.brave.override {
+      commandLineArgs = [
+        "--ozone-platform-hint=auto"
+        "--enable-features=TouchpadOverscrollHistoryNavigation,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder"
+        "--no-default-browser-check"
+      ];
+    })
+  ))
   ];
 
   home.file = {
